@@ -1,64 +1,139 @@
-import { useState } from "react";  //react hook
+// import { useState } from "react";  //react hook
 
-import { FormControl, FormGroup, InputLabel, Input, Typography, Button, styled } from "@mui/material";
+// import { FormControl, FormGroup, InputLabel, Input, Typography, Button, styled } from "@mui/material";
 
-const Container = styled(FormGroup)`
-width: 50%;
-margin: 5% auto 0 auto;     //top, right, bottom, and left margins.When both the left and right margins are set to auto, the browser will distribute the available horizontal space equally to the left and right of the element, effectively centering it within its containing block.
-& > div {                  //For the div elements below the Container tag, it takes this style. everything like the formcontrol, button etc is div element only. we can see this in inspect too.
-    margin-top: 20px;
-}
-`
-const initialValues = {
+// import { addUser } from "../service/api";
+
+// import {useNavigate} from 'react-router-dom'  //custom hook
+
+// const Container = styled(FormGroup)`
+// width: 50%;
+// margin: 5% auto 0 auto;     //top, right, bottom, and left margins.When both the left and right margins are set to auto, the browser will distribute the available horizontal space equally to the left and right of the element, effectively centering it within its containing block.
+// & > div {                  //For the div elements below the Container tag, it takes this style. everything like the formcontrol, button etc is div element only. we can see this in inspect too.
+//     margin-top: 20px;
+// }
+// `
+// const initialValues = {
+//     name: '',
+//     username: '',
+//     email: '',
+//     phone: ''
+
+// }
+
+// const AddUser = () => {
+
+//         const [user, setUser] = useState(initialValues);  //"user" stores initialValues object ( user is state variable). "setUser" is used to set the values in "user" object. (set user is state function)
+//         const navigate = useNavigate();
+        
+//         const onValueChange = (e) => {
+//             // console.log(e);
+//             // console.log(e.target.name , e.target.value); 
+//             setUser({...user, [e.target.name]: e.target.value})  //here e.target.name is a key but it is a variable coz it can be name,email etc. Hence we keep it in square brackets.
+//                                                                 //let user = { name: 'Alice', age: 25 };
+
+//                                                                     // Creating a new object instead of mutating the original
+//                                                                     // let updatedUser = { ...user, age: 26 };
+  
+//                                                                     // console.log(user); // { name: 'Alice', age: 25 }
+//                                                                     // console.log(updatedUser); // { name: 'Alice', age: 26 }
+
+//             console.log(user);
+
+//         }
+
+//         const addUserDetails = async () => {
+//            await addUser(user);
+//            navigate('/all');  //after adding user, it goes to allusers page
+
+//         }
+
+//     return ( 
+       
+//         <Container>
+//             <Typography variant='h4'> Add Users</Typography>
+//             <FormControl>
+//                 <InputLabel>Name</InputLabel>
+//                 <Input onChange={(e) => onValueChange(e)} name="name"/>
+//             </FormControl>
+//             <FormControl>
+//                 <InputLabel>Username</InputLabel>
+//                 <Input onChange={(e) => onValueChange(e)} name="username"/>
+//             </FormControl>
+//             <FormControl>
+//                 <InputLabel>Email</InputLabel>
+//                 <Input onChange={(e) => onValueChange(e)} name="email"/>
+//             </FormControl>
+//             <FormControl>
+//                 <InputLabel>Phone</InputLabel>
+//                 <Input onChange={(e) => onValueChange(e)} name="phone"/>
+//             </FormControl>
+//             <FormControl>
+//                 <Button onClick={() => addUserDetails()} variant='contained'>Add User</Button>
+//             </FormControl>
+//         </Container>
+//     );
+// }
+ 
+// export default AddUser;
+
+import react, { useState } from 'react';
+import { FormGroup, FormControl, InputLabel, Input, Button, styled, Typography } from '@mui/material';
+import { addUser } from '../service/api';
+import { useNavigate } from 'react-router-dom';
+
+const initialValue = {
     name: '',
     username: '',
     email: '',
     phone: ''
-
 }
+
+const Container = styled(FormGroup)`
+    width: 50%;
+    margin: 5% 0 0 25%;
+    & > div {
+        margin-top: 20px;
+`;
 
 const AddUser = () => {
+    const [user, setUser] = useState(initialValue);
+    const { name, username, email, phone } = user;
+    let navigate = useNavigate();
 
-        const [user, setUser] = useState(initialValues);  //"user" stores initialValues object ( user is state variable). "setUser" is used to set the values in "user" object. (set user is state function)
-        const onValueChange = (e) => {
-            // console.log(e.target.name , e.target.value); 
-            setUser({...user, [e.target.name]: e.target.value})  //here e.target.name is a key but it is a variable coz it can be name,email etc. Hence we keep it in square brackets.
-                                                                //let user = { name: 'Alice', age: 25 };
+    const onValueChange = (e) => {
+        setUser({...user, [e.target.name]: e.target.value})
+    }
 
-                                                                    // Creating a new object instead of mutating the original
-                                                                    // let updatedUser = { ...user, age: 26 };
+    const addUserDetails = async() => {
+        await addUser(user);
+        navigate('/all');
+    }
 
-                                                                    // console.log(user); // { name: 'Alice', age: 25 }
-                                                                    // console.log(updatedUser); // { name: 'Alice', age: 26 }
-
-        
-        }
-
-    return ( 
-       
+    return (
         <Container>
-            <Typography variant='h4'> Add Users</Typography>
+            <Typography variant="h4">Add User</Typography>
             <FormControl>
-                <InputLabel>Name</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="name"/>
+                <InputLabel htmlFor="my-input">Name</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='name' value={name} id="my-input" />
             </FormControl>
             <FormControl>
-                <InputLabel>Username</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="username"/>
+                <InputLabel htmlFor="my-input">Username</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='username' value={username} id="my-input" />
             </FormControl>
             <FormControl>
-                <InputLabel>Email</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="email"/>
+                <InputLabel htmlFor="my-input">Email</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='email' value={email} id="my-input"/>
             </FormControl>
             <FormControl>
-                <InputLabel>Phone</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="phone"/>
+                <InputLabel htmlFor="my-input">Phone</InputLabel>
+                <Input onChange={(e) => onValueChange(e)} name='phone' value={phone} id="my-input" />
             </FormControl>
             <FormControl>
-                <Button variant='contained'>Add User</Button>
+                <Button variant="contained" color="primary" onClick={() => addUserDetails()}>Add User</Button>
             </FormControl>
         </Container>
-    );
+    )
 }
- 
+
 export default AddUser;

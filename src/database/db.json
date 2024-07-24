@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "pramada",
+      "username": "pramada_kadarla",
+      "email": "pram@gmail.com",
+      "phone": "09154001085"
+    },
+    {
+      "id": 2,
+      "name": "sushi",
+      "username": "sushmitha",
+      "email": "sushi@gmail.com",
+      "phone": "09154001085"
+    },
+    {
+      "name": "srinu",
+      "username": "sujanasrikadarla",
+      "email": "sujanasri20241a6622@grietcollege.com",
+      "phone": "09154001085",
+      "id": 3
+    },
+    {
+      "name": "sujji",
+      "username": "sushmitha",
+      "email": "sujanasrikadarla726@gmail.com",
+      "phone": "09154001085",
+      "id": 4
+    },
+    {
+      "name": "sujji",
+      "username": "sujanasrikadarla",
+      "email": "sujanasrikadarla726@gmail.com",
+      "phone": "09154001085",
+      "id": 5
+    },
+    {
+      "name": "ab",
+      "username": "ab",
+      "email": "ab",
+      "phone": "ab",
+      "id": 7
+    },
+    {
+      "name": "a",
+      "username": "b",
+      "email": "c",
+      "phone": "d",
+      "id": 8
+    },
+    {
+      "name": "a",
+      "username": "a",
+      "email": "a",
+      "phone": "a",
+      "id": 9
+    }
+  ]
+}
